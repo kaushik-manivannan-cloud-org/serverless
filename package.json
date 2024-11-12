@@ -1,0 +1,21 @@
+{
+  "name": "serverless",
+  "version": "1.0.0",
+  "description": "Lambda Function for User Email Verification",
+  "main": "src/handler.js",
+  "type": "module",
+  "scripts": {
+    "test": "jest",
+    "deploy": "serverless deploy",
+    "local": "serverless offline"
+  },
+  "author": "Kaushik Manivannan",
+  "license": "ISC",
+  "dependencies": {
+    "@sendgrid/mail": "^8.1.4"
+  },
+  "devDependencies": {
+    "serverless": "^4.4.7",
+    "serverless-offline": "^14.3.4"
+  }
+}
