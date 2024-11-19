@@ -5,15 +5,8 @@ provider:
   runtime: nodejs18.x
   region: us-east-1
   profile: demo
-  stage: ${opt:stage, 'dev'}
-  environment:
-    SENDGRID_API_KEY: ${env:SENDGRID_API_KEY}
-    DOMAIN_NAME: ${env:DOMAIN_NAME}
-    SENDER_EMAIL: ${env:SENDER_EMAIL}
+  stage: ${opt:stage, 'demo'}
 
 functions:
   verifyEmail:
     handler: src/handler.handler
-
-plugins:
-  - serverless-offline
