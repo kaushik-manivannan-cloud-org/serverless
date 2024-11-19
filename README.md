@@ -25,22 +25,11 @@ When a new user registers in the web application, an SNS notification is publish
 ```
 ├── src/
 │   └── handler.js     # Lambda function handler
-├── .env               # Environment variables
 ├── package.json       # Project dependencies
 └── serverless.yml     # Serverless Framework configuration
 ```
 
 ## Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory with the following variables:
-
-```env
-SENDGRID_API_KEY=your_sendgrid_api_key
-DOMAIN_NAME=your_domain_name
-SENDER_EMAIL=your_verified_sender_email
-```
 
 ### Serverless Configuration
 
@@ -49,7 +38,6 @@ The `serverless.yml` file contains the AWS Lambda function configuration:
 - Runtime: Node.js 18.x
 - Trigger: SNS Topic
 - Region: us-east-1
-- Environment variables are automatically loaded from `.env`
 
 ## Installation
 
@@ -62,12 +50,6 @@ cd serverless
 2. Install dependencies:
 ```bash
 npm install
-```
-
-3. Configure environment variables:
-```bash
-cp .env.example .env
-# Edit .env with your values
 ```
 
 ## Deployment
