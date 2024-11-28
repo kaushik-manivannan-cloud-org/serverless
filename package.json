@@ -13,6 +13,7 @@
   "author": "Kaushik Manivannan",
   "license": "ISC",
   "dependencies": {
+    "@aws-sdk/client-secrets-manager": "^3.699.0",
     "@sendgrid/mail": "^8.1.4",
     "dotenv": "^16.4.5",
     "winston": "^3.17.0"
