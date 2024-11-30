@@ -1,11 +1,36 @@
 import sgMail from '@sendgrid/mail';
-import dotenv from 'dotenv';
+import { SecretsManagerClient, GetSecretValueCommand } from "@aws-sdk/client-secrets-manager";
 
-dotenv.config();
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+const secretsManager = new SecretsManagerClient();
+let cachedCredentials = null;
+
+const getCredentials = async () => {
+  if (cachedCredentials) {
+    return cachedCredentials;
+  }
+
+  try {
+    const command = new GetSecretValueCommand({
+      SecretId: process.env.SECRETS_ARN,
+    });
+
+    const response = await secretsManager.send(command);
+    const credentials = JSON.parse(response.SecretString);
+    cachedCredentials = credentials;
+    return credentials;
+  } catch (error) {
+    console.error('Error retrieving credentials from Secrets Manager:', error);
+    throw error;
+  }
+};
 
 export const handler = async (event) => {
   try {
+
+    // Get credentials from Secrets Manager
+    const credentials = await getCredentials();
+    sgMail.setApiKey(credentials.sendgrid_api_key);
+
     // Parse SNS message
     const message = JSON.parse(event.Records[0].Sns.Message);
     const { email, first_name, verification_token } = message;
