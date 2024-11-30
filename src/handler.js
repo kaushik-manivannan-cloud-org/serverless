@@ -29,7 +29,7 @@ export const handler = async (event) => {
 
     // Get credentials from Secrets Manager
     const credentials = await getCredentials();
-    sgMail.setApiKey(credentials.SENDGRID_API_KEY);
+    sgMail.setApiKey(credentials.sendgrid_api_key);
 
     // Parse SNS message
     const message = JSON.parse(event.Records[0].Sns.Message);
