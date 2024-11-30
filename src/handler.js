@@ -36,7 +36,7 @@ export const handler = async (event) => {
     const { email, first_name, verification_token } = message;
 
     // Create verification URL
-    const verificationUrl = `http://${process.env.DOMAIN_NAME}/v1/user/verify?token=${verification_token}`;
+    const verificationUrl = `https://${process.env.DOMAIN_NAME}/v1/user/verify?token=${verification_token}`;
 
     // Prepare email
     const msg = {
